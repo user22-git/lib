@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project default="dist" name="Project BankPrj4-ant">
+<!--    default="jar" basedir=".">-->
+    <description>A simple Java project</description>
+    <property name="srcDir" location="F:\OKSANA\JAVA\labs_mylabs\projects\BankPrj4\src"/>
+    <property name="buildDir" location="F:\OKSANA\JAVA\labs_mylabs\projects\BankPrj4\build"/>
+    <property name="distDir" location="F:\OKSANA\JAVA\labs_mylabs\projects\BankPrj4\dist"/>
+<!--    <property name="classpath" value="CF:\OKSANA\JAVA\labs_mylabs\projects\BankPrj4\dist\BankPrj4.jar" />-->
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="/build"/>
+        <mkdir dir="/dist"/>
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${srcDir}" destdir="/build" includeAntRuntime="no"/>
+    </target>
+    <target name="dist" depends="compile">
+        <jar destfile="${distDir}/package-${DSTAMP}.jar" basedir="/build">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="com.mybank.test.TestBanking"/>
+            </manifest>
+        </jar>
+        <jar destfile="${distDir}/package-src-${DSTAMP}.jar" basedir="/"/>
+    </target>
+    <target name="clean">
+        <delete dir="/build"/>
+        <delete dir="/dist"/>
+    </target>
+</project>
